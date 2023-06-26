@@ -17,7 +17,7 @@ app = Flask(__name__, template_folder="templates")
 load_dotenv()
 
 Base_dir = os.path.dirname(os.path.realpath(__file__))
-uri = os.environ.get("DATABASE_URL")
+uri = os.environ.get("DATABASE_URI")
 if uri and uri.startswith("postgres://"):
     uri = uri.replace("postgres://", "postgresql://", 1)
 
