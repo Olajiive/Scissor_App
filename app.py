@@ -12,13 +12,12 @@ import io
 import string, random
 import qrcode
 from dotenv import load_dotenv
-from decouple import config
 
 app = Flask(__name__, template_folder="templates")
 load_dotenv()
 
 Base_dir = os.path.dirname(os.path.realpath(__file__))
-uri = config("DATABASE_URL")
+uri = os.environ.get("DATABASE_URL")
 if uri and uri.startswith("postgres://"):
     uri = uri.replace("postgres://", "postgresql://", 1)
 
