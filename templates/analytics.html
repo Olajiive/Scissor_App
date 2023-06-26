@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Analytics</title>
+</head>
+<body>
+    <h1>URL Analytics</h1>
+    <div>
+        <img src="{{ url_for('static', filename='qr-codes/' + link.qr_code, external=True)}}"  alt="QR Code">
+    </div>
+    {%if link %}
+    <p>Original URL: {{ link.long_url }}</p>
+    <p>Shortened URL: <a href="{{ link.short_url }}" target="_blank">{{link.short_url }}</a></p>
+    <p>Number of clicks: {{ link.clicks }}</p>
+    <small>Created: {{ link.created_at }}</small>
+    <p>Link history:</p>
+    <a href="{{ url_for('static', filename='qr-codes/' + link.qr_code, external=True)}}"  alt="QR Code image">
+        <button>Download QR Code</button>
+    </a>
+    {% else %}
+    <small>
+        This link does not exist at the moment. <a href="{{url_for('home')}}">get started by creating one</a>
+    </small>
+    {% endif %}
+</body>
+</html>

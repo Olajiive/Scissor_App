@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}URL History{% endblock %}
+{% block content %}
+<section class="history">
+{% if current_user.is_authenticated %}
+<div class="table-container" style="overflow-x: auto;">
+  <table>
+	<thead>
+		<tr>
+		  <th>Short URL</th>
+		  <th>Long URL</th>
+		  <th>Analytics</th>
+		  <th>Date Created</th>
+		  <th>Edit</th>
+		  <th>Delete</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for link in links %}
+		<tr>
+		<td><a href="{{ url_for('redirect_url', short_url=link.short_url) }}" target="_blank">{{host}}{{link.short_url}}</a></td>
+		<td>{{ link.long_url }}</td>
+		<td><a href="{{ url_for('url_analytics', short_url=link.short_url) }}">Analytics</a></td>
+		<td>{{ link.created_at }}</td>
+		<td><a href="{{ url_for('edit_url', short_url=link.short_url) }}">Edit</a></td>
+		<td><a href="{{ url_for('delete', short_url=link.short_url) }}">Delete</a></td>
+		</tr>
+		{% endfor%}
+	</tbody>
+  </table>
+</div>
+{% else %}
+  <h1>You do not have any urls yet. <a href="{{url_for('home')}}">Click to Create</a> </h1>
+{% endif %}
+</section>
+{% endblock %}

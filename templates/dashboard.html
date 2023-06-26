@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<section class="hero-dashboard" style="padding: 100px 20px;">
+    {% if current_user.is_authenticated %}
+        {% if links %}
+            {% for link in links %}
+            <div class="card">
+                <img class="card-img-top" src="{{url_for('static', filename='')}}" alt="QR Code">
+                <a href="{{url_for('static', filename='')}}" download="QR Code image">
+                    <button class="">Download QR Code</button>
+                </a>
+            
+                <div class="card-body">
+                    <h5 class="card-title">Link Clicks: {{link.clicks}} <br>Created: {{ link.created_at}}</h5>
+                    <p class="card-text">{{ link.long_url }}</p>
+                    <p>Shortened Link: <br>
+                        <a href="{{ url_for('redirect_url', short_url=link.short_url) }}">
+                            {{host}}{{link.short_url}}
+                        </a>
+                    </p>
+                    
+                    <a href="{{url_for('edit_url', short_url=link.short_url)}}">
+                        <button>Edit Url</button>
+                    </a>
+
+                    <a href="{{url_for('delete', short_url=link.short_url)}}">
+                        <button>Delete Url</button>
+                    </a>
+                  
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <h1>You do not have any urls yet. <a href="{{url_for('home')}}">Click to Create</a> </h1>
+        {% endif %}
+    {% else %}
+    <small>
+        <a>Please login to see your urls</a>
+    </small>
+    {% endif %}
+    
+    
+</section>
+    
+{% endblock %}

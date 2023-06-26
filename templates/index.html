@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}URL Shortener{% endblock %}
+{% block content %}
+
+<section class="hero">
+    <div class="hero-text">
+        {% if current_user.is_authenticated %}
+        <h3 style="padding-bottom: 5px;">Hello {{current_user.username|capitalize}}</h3>
+        <div class="url-form">
+            <form action="{{url_for('home')}}" method="POST">
+                <input type="text" name="long_url" id="long_url" placeholder="https://example.com/my-long-url" required>
+                <input type="text" name="custom_url" id="custom_url" placeholder="Enter custom URL (optional)">
+                <br>
+                <button type="submit">Shorten URL</button>
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                        <small style="color: gray; display: flex; text-align: center;">{{message}}</small>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </form>
+        </div>
+        {% else %}
+        <h5>Welcome to</h5>
+        <h1>Cutty<span>Url</span></h1>
+        <h4>Shorten. Share. Succeed.</h4>
+        <p><span>Shortening URLs, Analytics and Customization.</span></p>
+        <a href="{{url_for('signup')}}">Sign up to get started</a>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}
