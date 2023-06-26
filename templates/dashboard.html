@@ -6,8 +6,8 @@
         {% if links %}
             {% for link in links %}
             <div class="card">
-                <img class="card-img-top" src="{{url_for('static', filename='')}}" alt="QR Code">
-                <a href="{{url_for('static', filename='')}}" download="QR Code image">
+                <img class="card-img-top" src="{{url_for('generate_qr_code_url', short_url=link.short_url)}}" alt="QR Code">
+                <a href="{{url_for('generate_qr_code_url', short_url=link.short_url)}}" download="QR Code image">
                     <button class="">Download QR Code</button>
                 </a>
             

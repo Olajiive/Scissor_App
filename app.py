@@ -12,14 +12,18 @@ import io
 import string, random
 import qrcode
 from dotenv import load_dotenv
+from decouple import config
 
 app = Flask(__name__, template_folder="templates")
 load_dotenv()
 
 Base_dir = os.path.dirname(os.path.realpath(__file__))
+uri = config("DATABASE_URL")
+if uri and uri.startswith("postgres://"):
+    uri = uri.replace("postgres://", "postgresql://", 1)
 
-app.config["SQLALCHEMY_DATABASE_URI"]="sqlite:///"+ os.path.join(Base_dir, "db.sqlite")
-#app.config["SQLALCHEMY_DATABASE_URI"]=os.environ.get("DATABASE_URL")#.replace("://", "ql://", 1)
+#app.config["SQLALCHEMY_DATABASE_URI"]="sqlite:///"+ os.path.join(Base_dir, "db.sqlite")
+app.config["SQLALCHEMY_DATABASE_URI"]=uri
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]=False
 app.config["SECRET_KEY"]=os.environ.get("SECRET_KEY")
 app.config["CACHE_TYPE"]="SimpleCache"
@@ -181,11 +185,10 @@ def home():
                 short_url_exist = Link.query.filter_by(short_url=short_url).first()
                 if not short_url_exist:
                     break
-        qr_code = generate_qr_code(short_url)
-        link = Link(long_url=long_url, short_url=short_url, custom_url=custom_url, qr_code=qr_code, user_id = current_user.id)
-        db.session.add(link)
-        db.session.commit()
-        return redirect(url_for("dashboard"))
+            link = Link(long_url=long_url, short_url=short_url, custom_url=custom_url, user_id = current_user.id)
+            db.session.add(link)
+            db.session.commit()
+            return redirect(url_for("dashboard"))
     
     return render_template('index.html')
 
@@ -262,11 +265,9 @@ def edit_url(short_url):
 @login_required
 def delete(short_url):
     link = Link.query.filter_by(short_url=short_url).first()
-    qr_code = link.qr_code
-    full_qr_code = f"{app.config['UPLOAD_PATH']}/{qr_code}"
+
 
     if link:
-        os.remove(full_qr_code)
         db.session.delete(link)
         db.session.commit()
         return redirect(url_for("dashboard"))
@@ -274,4 +275,4 @@ def delete(short_url):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
