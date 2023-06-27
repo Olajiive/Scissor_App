@@ -58,7 +58,6 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(), nullable=False, unique=True)
     password = db.Column(db.Text, nullable=False)
-    confirm_password = db.Column(db.Text, nullable=False)
     created_at = db.Column(db.DateTime(), default=datetime.utcnow)
     user_links =db.relationship("Link", backref="user", lazy=True)
 
@@ -126,7 +125,7 @@ def signup():
         elif user:
             flash("This username already exists.")
 
-        elif password and confirm_password == False:
+        elif password != confirm_password:
             flash("password and confirm_password does not match. Please try again! ")
         
         else:
@@ -275,6 +274,7 @@ def delete(short_url):
         return redirect(url_for("dashboard"))
     return "URL not found"
 
-
+with app.app_context():
+    db.create_all()
 if __name__ == "__main__":
     app.run()
