@@ -17,12 +17,12 @@ app = Flask(__name__, template_folder="templates")
 load_dotenv()
 
 Base_dir = os.path.dirname(os.path.realpath(__file__))
-uri = os.environ.get("DATABASE_URI")
-if uri and uri.startswith("postgres://"):
-    uri = uri.replace("postgres://", "postgresql://", 1)
+SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URI")
+if SQLALCHEMY_DATABASE_URI and SQLALCHEMY_DATABASE_URI.startswith("postgres://"):
+    SQLALCHEMY_DATABASE_URI = SQLALCHEMY_DATABASE_URI.replace("postgres://", "postgresql://", 1)
 
 #app.config["SQLALCHEMY_DATABASE_URI"]="sqlite:///"+ os.path.join(Base_dir, "db.sqlite")
-app.config["SQLALCHEMY_DATABASE_URI"]=uri
+app.config["SQLALCHEMY_DATABASE_URI"]=SQLALCHEMY_DATABASE_URI
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]=False
 app.config["SECRET_KEY"]=os.environ.get("SECRET_KEY")
 app.config["CACHE_TYPE"]="SimpleCache"
@@ -55,10 +55,10 @@ def generate_short_url(length=5):
 class User(db.Model, UserMixin):
     __tablename__ = "users"
     id = db.Column(db.Integer(), primary_key=True)
-    username = db.Column(db.String(100))
+    username = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(), nullable=False, unique=True)
-    username = db.Column(db.String(), nullable=False)
     password = db.Column(db.Text, nullable=False)
+    confirm_password = db.Column(db.Text, nullable=False)
     created_at = db.Column(db.DateTime(), default=datetime.utcnow)
     user_links =db.relationship("Link", backref="user", lazy=True)
 
@@ -125,6 +125,9 @@ def signup():
 
         elif user:
             flash("This username already exists.")
+
+        elif password and confirm_password == False:
+            flash("password and confirm_password does not match. Please try again! ")
         
         else:
             new_user = User(email=email.lower(),username=username, password=generate_password_hash(password))                                                                                                  
