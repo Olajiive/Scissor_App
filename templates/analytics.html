@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL Analytics</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}URL Analytics{% endblock %}
+{% block content %}
     <h1>URL Analytics</h1>
     <div>
         <img src="{{url_for('generate_qr_code_url', short_url=link.short_url)}}"  alt="QR Code">
@@ -24,5 +19,4 @@
         This link does not exist at the moment. <a href="{{url_for('home')}}">get started by creating one</a>
     </small>
     {% endif %}
-</body>
-</html>
+{% endblock %}
