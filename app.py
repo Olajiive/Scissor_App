@@ -20,8 +20,8 @@ Base_dir = os.path.dirname(os.path.realpath(__file__))
 #SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
 #if SQLALCHEMY_DATABASE_URI and SQLALCHEMY_DATABASE_URI.startswith("postgres://"):
     #SQLALCHEMY_DATABASE_URI = SQLALCHEMY_DATABASE_URI.replace("postgres://", "postgresql://", 1)
-#app.config["SQLALCHEMY_DATABASE_URI"]="sqlite:///"+ os.path.join(Base_dir, "db.sqlite3")
-app.config["SQLALCHEMY_DATABASE_URI"]=os.environ.get("DATABASE_URI")
+app.config["SQLALCHEMY_DATABASE_URI"]="sqlite:///"+ os.path.join(Base_dir, "db.sqlite3")
+#app.config["SQLALCHEMY_DATABASE_URI"]=os.environ.get("DATABASE_URI")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]=False
 app.config["SECRET_KEY"]=os.environ.get("SECRET_KEY")
 app.config["CACHE_TYPE"]="SimpleCache"
@@ -81,7 +81,7 @@ class Link(db.Model, UserMixin):
     custom_url= db.Column(db.String(40), unique=True, default=None)
     clicks = db.Column(db.Integer, default=0)
     qr_code = db.Column(db.String())
-    created_at = db.Column(db.String(20), default=datetime.utcnow())
+    created_at = db.Column(db.DateTime(), default=datetime.utcnow())
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
 
     def __repr__(self):
