@@ -17,11 +17,11 @@ app = Flask(__name__, template_folder="templates")
 load_dotenv()
 
 Base_dir = os.path.dirname(os.path.realpath(__file__))
-SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
-if SQLALCHEMY_DATABASE_URI and SQLALCHEMY_DATABASE_URI.startswith("postgres://"):
-    SQLALCHEMY_DATABASE_URI = SQLALCHEMY_DATABASE_URI.replace("postgres://", "postgresql://", 1)
+#SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
+#if SQLALCHEMY_DATABASE_URI and SQLALCHEMY_DATABASE_URI.startswith("postgres://"):
+    #SQLALCHEMY_DATABASE_URI = SQLALCHEMY_DATABASE_URI.replace("postgres://", "postgresql://", 1)
 #app.config["SQLALCHEMY_DATABASE_URI"]="sqlite:///"+ os.path.join(Base_dir, "db.sqlite")
-app.config["SQLALCHEMY_DATABASE_URI"]=SQLALCHEMY_DATABASE_URI
+app.config["SQLALCHEMY_DATABASE_URI"]=os.environ.get("DATABASE_URL")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]=False
 app.config["SECRET_KEY"]=os.environ.get("SECRET_KEY")
 app.config["CACHE_TYPE"]="SimpleCache"
