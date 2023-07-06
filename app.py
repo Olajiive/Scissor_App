@@ -20,7 +20,8 @@ Base_dir = os.path.dirname(os.path.realpath(__file__))
 #SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
 #if SQLALCHEMY_DATABASE_URI and SQLALCHEMY_DATABASE_URI.startswith("postgres://"):
     #SQLALCHEMY_DATABASE_URI = SQLALCHEMY_DATABASE_URI.replace("postgres://", "postgresql://", 1)
-app.config["SQLALCHEMY_DATABASE_URI"]="sqlite:///"+ os.path.join(Base_dir, "db.sqlite3")
+#.config["SQLALCHEMY_DATABASE_URI"]="sqlite:///"+ os.path.join(Base_dir, "db.sqlite3")
+app.config["SQLALCHEMY_DATABASE_URI"]="postgresql://example_postgresql_cuttyurl_user:Mv1fn7OIsGtDlQ3k32ldg8knBMtO3aPk@dpg-cidfeo6nqqlb62kl52fg-a.oregon-postgres.render.com/example_postgresql_cuttyurl"
 #app.config["SQLALCHEMY_DATABASE_URI"]=os.environ.get("DATABASE_URI")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]=False
 app.config["SECRET_KEY"]=os.environ.get("SECRET_KEY")
@@ -115,7 +116,7 @@ def signup():
         mail=User.query.filter_by(email=email.lower()).first()
         user=User.query.filter_by(username=username).first()
         if mail:
-            flash("This email already taken.")
+            flash("This email has already been taken.")
         elif len(username) < 3:
             flash("Username must be greater than 2 characters.")
         elif len(password) < 6:
@@ -132,7 +133,7 @@ def signup():
 
             db.session.add(new_user)
             db.session.commit()
-            flash("Account created successfully. Please check your mail inbox or spam for verification.")
+            flash("Account created successfully. Login into your account.")
             return redirect(url_for("login"))
     return render_template("signup.html")
 

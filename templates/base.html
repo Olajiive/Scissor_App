@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CuttyUrl - {% block title%}{% endblock %}</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='auth.css')}}">
 
     <meta name="description" content="Shortening URLs, Analytics and Customization.">
     <meta name="keywords" content="CuttyUrl, URL Shortener, Shorten Links">
@@ -36,33 +37,56 @@
     <meta name="twitter:creator" content="@jiive_SZN">
 </head>
 <body>
+    
     <header class="nav-el">
-        <a href="{{url_for('home')}}" class="logo"></a>
-        <ul class="navlist">
-            <li><a href="{{url_for('home')}}">Home</a></li>
-            <li><a href="{{url_for('about')}}">About</a></li>
-            {% if current_user.is_authenticated %}
-            <li><a href="{{url_for('dashboard')}}">Dashboard</a></li>
-            <li><a href="{{url_for('link_history')}}">History</a></li>
-            <li><a href="{{url_for('logout')}}">Logout</a></li>
-            {% else %}
-            <li><a href="{{url_for('signup')}}">Signup</a></li>
-            <li><a href="{{url_for('login')}}">Login</a></li>
-            {% endif %}
-        </ul>
-        <div class="bx bx-menu" id="menu-icon"></div>
+        <div>
+            <div class="cutty" >
+                <a href="{{url_for('home')}}" class="logo"><span class="cutty-big"></span><span style="color: whitesmoke; font-size: 30px;">uttyUrl</span></a>
+            </div>
+            
+            <ul class="navlist">
+                <div>
+                    <li><a href="{{url_for('home')}}"><button>Home</button></a></li>
+                </div>
+                <div>
+                    <li><a href="{{url_for('about')}}"><button>About</button></a></li>
+                </div>
+                {% if current_user.is_authenticated %}
+                <div>
+                    <li><a href="{{url_for('dashboard')}}"><button>Dashboard</button></a></li>    
+                </div>
+                <div>
+                    <li><a href="{{url_for('link_history')}}"><button>History</button></a></li>  
+                </div>
+                <div>
+                    <li><a href="{{url_for('logout')}}"><button>Logout</button></a></li>
+                </div>
+        
+                {% else %}
+                <div>
+                    <li><a href="{{url_for('signup')}}"><button>Signup</button></a></li>
+                </div>
+                <div>
+                    <li><a href="{{url_for('login')}}"><button>Login</button></a></li>
+                </div>
+                
+                {% endif %}
+            </ul>
+            <!--div class="bx bx-menu" id="menu-icon"></div-->
+        </div>
 
     </header>
+    
     <div class="container">
         {% block content%}{% endblock %}
     </div>
     <footer>
-        <p>
-            <a href="https://twitter.com/jiive_SZN" class="twitter">@jiive_SZN</a>
-            <a  href="https://linkedin.com/jiive_SZN" class="linkedin"></a>
-            <script>
-                document.write(new Date().getFullYear());
-            </script>
+        <p class="footer">
+            <a href="https://twitter.com/jiive_SZN" class="twitter"><i></i></a>
+            <a href="https://linkedin.com/in/olatunji-olasunkanmi-b6384119b" class="linkedin"><i></i></a>
+            <div class="cutty-small"></div><span >uttyUrl</span> &copy; <script>
+                document.write(new Date().getFullYear())
+            </script>. &nbsp; All Rights Reserved
         </p>
     </footer>
 

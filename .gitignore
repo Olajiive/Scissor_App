@@ -160,7 +160,7 @@ cython_debug/
 #.idea/
 
 # Django stuff:
-*.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
+#*.log
+#local_settings.py
+#db.sqlite3
+#db.sqlite3-journal

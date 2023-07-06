@@ -1,0 +1,39 @@
+.form-box {
+    width: 35%;
+    height: 400px;
+    background-color: white;
+    margin: auto;
+    margin-top: 55px;
+    box-shadow: -5px 5px 10px rgb(131, 128, 128);
+    padding-top: 10px;
+    box-sizing: border-box;
+}
+
+.form-value {
+    width: 95%;
+    height: 100%;
+    /*border: 1px solid red;*/
+    margin: auto;
+    box-sizing: border-box;
+
+}
+input {
+    width: 100%;
+    padding: 7px;
+    border-style:hidden;
+    background-color: #c1b8b8;
+    border-radius: 10px;
+    margin-top: 3px;
+    
+}
+
+input:focus {
+    outline: none;
+    
+}
+.inputbox {
+   padding-top: 10px;
+}
+
+
+

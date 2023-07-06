@@ -1,38 +1,48 @@
 {% extends "auth.html" %}
 {% block title %}Sign Up{% endblock %}
 {% block content %}
-    <form action="{{url_for('signup')}}"method="post" style="padding: 10px;">
-        <h2>Sign Up</h2>
-        <div class="inputbox">
-            <ion-icon name="person-outline"></ion-icon>
-            <input type="text" name="username" required>
-            <label for="">Username</label>
+<section>
+    <div class="form-box">
+        <div class="form-value">
+            <form action="{{url_for('signup')}}"method="post" style="padding: 10px;">
+                <h2 style="text-align: center;">Sign Up</h2>
+                <div class="inputbox">
+                    <label for="">Username:</label>
+                    <input type="text" name="username" required>
+                    
+                </div>
+                <div class="inputbox">
+                    <label for="">Email:</label>
+                    <input type="email" name="email" required>
+                    
+                </div>
+                <div class="inputbox">
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" required>
+                   
+                </div>
+                <div class="inputbox">
+                    <label for="confim_password">Confirm Password:</label>
+                    <input type="password" name="confirm_password" required>
+                    
+                </div>
+
+                
+                <button type="submit" style="margin:10px 0px; padding: 7px; background-color:rgb(133, 79, 183); border-style: hidden; border-radius: 7px;" >Sign Up</button>
+                
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <small style="color: gray; display: flex; text-align: center;">{{message}}</small>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <div class="register">
+                    <small style="text-align: center;">Already have an account? <a href="{{url_for('login')}}" style="text-decoration: underline; color: rgb(133, 79, 183);">Login</a></small>
+                </div>
+            </form>
         </div>
-        <div class="inputbox">
-            <ion-icon name="mail-outline"></ion-icon>
-            <input type="email" name="email" required>
-            <label for="">Email</label>
-        </div>
-        <div class="inputbox">
-            <ion-icon name="lock-closed-outline"></ion-icon>
-            <input type="password" name="password" required>
-            <label for="">Password</label>
-        </div>
-        <div class="inputbox">
-            <ion-icon name="document-lock-outline"></ion-icon>
-            <input type="password" name="confirm_password" required>
-            <label for="confim_password">Confirm Password</label>
-        </div>
-        <button type="submit">Sign Up</button>
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                    <small style="color: gray; display: flex; text-align: center;">{{message}}</small>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-        <div class="register">
-            <p>Already have a account? <a href="{{url_for('login')}}">Login</a></p>
-        </div>
-    </form>
+    </div>
+</section>
+    
 {% endblock %}
