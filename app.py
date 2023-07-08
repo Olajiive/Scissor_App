@@ -58,7 +58,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(), nullable=False, unique=True)
     password = db.Column(db.Text, nullable=False)
-    created_at = db.Column(db.DateTime(), default=datetime.utcnow)
+    created_at = db.Column(db.DateTime(), default=datetime.utcnow())
     user_links =db.relationship("Link", backref="user", lazy=True)
 
           
