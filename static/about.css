@@ -1,0 +1,28 @@
+.about-cont {
+    width: 80%;
+    height: 580px;
+    margin: auto;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    line-height: 23px;
+
+}
+.about-list li {
+    list-style: circle;
+    margin-left: 20px;
+}
+h1 {
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;  
+}
+h2 {
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.about-contact {
+    text-align: center;
+}
+
+

@@ -1,12 +1,16 @@
+
+
 .form-box {
     width: 35%;
-    height: 400px;
+    height: 430px;
     background-color: white;
     margin: auto;
     margin-top: 55px;
     box-shadow: -5px 5px 10px rgb(131, 128, 128);
     padding-top: 10px;
     box-sizing: border-box;
+    /*border: 1px solid red;*/
+    
 }
 
 .form-value {

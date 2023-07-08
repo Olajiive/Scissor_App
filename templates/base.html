@@ -7,6 +7,13 @@
     <title>CuttyUrl - {% block title%}{% endblock %}</title>
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='auth.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='about.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='analytics.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='dashboard.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='edit.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='history.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='index.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/all.css')}}">
 
     <meta name="description" content="Shortening URLs, Analytics and Customization.">
     <meta name="keywords" content="CuttyUrl, URL Shortener, Shorten Links">
@@ -41,7 +48,9 @@
     <header class="nav-el">
         <div>
             <div class="cutty" >
-                <a href="{{url_for('home')}}" class="logo"><span class="cutty-big"></span><span style="color: whitesmoke; font-size: 30px;">uttyUrl</span></a>
+                <a href="{{url_for('home')}}" class="logo">
+                    <span class="cutty-big"></span>
+                    <span style="color: whitesmoke; font-size: 40px;">CuttyUrl</span></a>
             </div>
             
             <ul class="navlist">
@@ -82,9 +91,8 @@
     </div>
     <footer>
         <p class="footer">
-            <a href="https://twitter.com/jiive_SZN" class="twitter"><i></i></a>
-            <a href="https://linkedin.com/in/olatunji-olasunkanmi-b6384119b" class="linkedin"><i></i></a>
-            <div class="cutty-small"></div><span >uttyUrl</span> &copy; <script>
+            
+            <div class="cutty-small"></div><span>CuttyUrl</span> &copy; <script>
                 document.write(new Date().getFullYear())
             </script>. &nbsp; All Rights Reserved
         </p>

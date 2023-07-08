@@ -1,0 +1,21 @@
+.table-container {
+    width: 100%;
+    margin: auto;
+
+}
+table {
+    width: 75%;
+    margin: auto;
+    border: 1px solid rgb(133, 79, 183) ;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border: 1px solid rgb(133, 79, 183)
+}
+a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,16 @@
+.hero {
+    margin-top: 100px;
+}
+.url-form {
+    width: 62%;
+    margin-top: 10px;
+    
+}
+input {
+    width: 100%;
+    margin-top: 10px;
+}
+
+a {
+    color:rgb(133, 79, 183);
+}

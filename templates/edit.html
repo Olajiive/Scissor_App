@@ -1,21 +1,23 @@
-{% extends 'auth.html' %}
+{% extends 'base.html' %}
 {% block title %}Edit URL{% endblock %}
 {% block content %}
+<div class="edit-url">
+    <form action="{{url_for('edit_url', short_url=link.short_url )}}"method="post">
+        <h2>Edit URL</h2>
+        <div class="inputbox">
+            <label for="long_url">Long Url:</label>
+            <input type="text" name="long_url" value="{{link.long_url}}" disabled>
+        </div>
+        <div class="inputbox">
+            <label for="short_url">Short Url:</label>
+            <input type="text" name="short_url" value="{{link.short_url}}" disabled>
+        </div>
+        <div class="inputbox">
+            <label for="custom_url">Custom Url:</label>
+            <input type="text" name="custom_url" placeholder="{{link.short_url}}" required>
+        </div>
+        <button type="submit" style="margin:10px 0px; padding: 7px; background-color:rgb(133, 79, 183); border-style: hidden; border-radius: 7px;">Submit changes</button>
+    </form>
+</div>
 
-<form action="{{url_for('edit_url', short_url=link.short_url )}}"method="post">
-    <h2>Edit URL</h2>
-    <div class="inputbox">
-        <label for="long_url">Long Url</label>
-        <input type="text" name="long_url" value="{{link.long_url}}" disabled>
-    </div>
-    <div class="inputbox">
-        <label for="short_url">Short Url</label>
-        <input type="text" name="short_url" value="{{link.short_url}}" disabled>
-    </div>
-    <div class="inputbox">
-        <label for="custom_url">Custom Url</label>
-        <input type="text" name="custom_url" placeholder="{{link.short_url}}" required>
-    </div>
-    <button type="submit">Submit changes</button>
-</form>
 {% endblock %}

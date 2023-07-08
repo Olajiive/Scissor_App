@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %}URL Analytics{% endblock %}
 {% block content %}
+<div class="url-cont">
     <h1>URL Analytics</h1>
     
     <div style="width: 150px; height: 150px;">
@@ -11,13 +12,15 @@
     <p>Shortened URL: <a href="{{ link.short_url }}" target="_blank">{{link.short_url }}</a></p>
     <p>Number of clicks: {{ link.clicks }}</p>
     <small>Created: {{ link.created_at }}</small>
-    <p>Link history:</p>
+</br>
     <a href="{{url_for('generate_qr_code_url', short_url=link.short_url)}}"  alt="QR Code image">
-        <button>Download QR Code</button>
+        <button style="margin:10px 0px; padding: 7px; background-color:rgb(133, 79, 183); border-style: hidden; border-radius: 7px; cursor: pointer;">Download QR Code</button>
     </a>
     {% else %}
     <small>
         This link does not exist at the moment. <a href="{{url_for('home')}}">get started by creating one</a>
     </small>
     {% endif %}
+</div>
+    
 {% endblock %}
