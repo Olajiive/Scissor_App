@@ -21,8 +21,8 @@ Base_dir = os.path.dirname(os.path.realpath(__file__))
 #if SQLALCHEMY_DATABASE_URI and SQLALCHEMY_DATABASE_URI.startswith("postgres://"):
     #SQLALCHEMY_DATABASE_URI = SQLALCHEMY_DATABASE_URI.replace("postgres://", "postgresql://", 1)
 #app.config["SQLALCHEMY_DATABASE_URI"]="sqlite:///"+ os.path.join(Base_dir, "db.sqlite3")
-#app.config["SQLALCHEMY_DATABASE_URI"]="postgresql://example_postgresql_cuttyurl_user:Mv1fn7OIsGtDlQ3k32ldg8knBMtO3aPk@dpg-cidfeo6nqqlb62kl52fg-a.oregon-postgres.render.com/example_postgresql_cuttyurl"
-app.config["SQLALCHEMY_DATABASE_URI"]=os.environ.get("DATABASE_URI")
+app.config["SQLALCHEMY_DATABASE_URI"]="postgresql://example_postgresql_cuttyurl_502b_user:aPhr3z5oTztjCjFyPSjRtmwE6FqIOdxl@dpg-cilirkp5rnuvtgsrnhdg-a.oregon-postgres.render.com/example_postgresql_cuttyurl_502b"
+#app.config["SQLALCHEMY_DATABASE_URI"]=os.environ.get("DATABASE_URI")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]=False
 app.config["SECRET_KEY"]=os.environ.get("SECRET_KEY")
 app.config["CACHE_TYPE"]="SimpleCache"
